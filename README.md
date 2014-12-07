@@ -1,8 +1,7 @@
 #Blackjack example for Launch Academy
 
 ## Settup
-- gem install rspec
-- gem install pry
+bundle
 
 ## Run Tests
 rspec spec/
