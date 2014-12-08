@@ -26,14 +26,17 @@ class Main
 
   def take_player_input
     input = prompt
-    while(player.score < 21) do
+    while(player.score <= 21) do
       input ||= prompt
-      if input == 'h'
+      if 'h'.casecmp(input) == 0
         player.cards << deck.deal
         $stdout.puts player.last_dealt
         input = nil
-      elsif input == 's'
+      elsif 's'.casecmp(input) == 0
         break
+      else
+        $stdout.puts 'invalid input, please Hit or Stand?(h/s):'
+        input = prompt
       end
     end
   end

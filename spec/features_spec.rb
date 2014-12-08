@@ -32,5 +32,19 @@ describe 'Features' do
       end
       expect(output).not_to include '3. Player was dealt'
     end
+
+    it 'accepts uppercase' do
+      output = FakeIO.each_input(['S']) do
+        Main.new.run
+      end
+      expect(output).not_to include '3. Player was dealt'
+    end
+
+    it 'reprompts for invalid input' do
+      output = FakeIO.each_input(['invalid'] + hit) do
+        Main.new.run
+      end
+      expect(output).to include 'invalid input, please Hit or Stand?(h/s):'
+    end
   end
 end
