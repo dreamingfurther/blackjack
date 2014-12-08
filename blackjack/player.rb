@@ -8,14 +8,4 @@ class Player < Hand
   def last_dealt
     "#{cards.count}. Player was dealt #{cards.last.value}\n"
   end
-
-  def score
-    Card.adjust_aces(raw_score, cards)
-  end
-
-  private
-
-  def raw_score
-    cards.inject(0) {|total, card| total+= card.score; total}
-  end
 end
