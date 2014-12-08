@@ -7,8 +7,8 @@ class Deck
     sort
   end
 
-  def deal
-    cards.shift
+  def deal_to(hand)
+    hand.cards << cards.shift
   end
 
   def shuffle

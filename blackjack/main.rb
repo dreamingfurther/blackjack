@@ -1,5 +1,4 @@
 class Main
-
   BUST_SCORE = 21
   DEALER_THRESHOLD = 17
 
@@ -16,7 +15,8 @@ class Main
 
   def play
     while(player.score <= BUST_SCORE) do
-      @input = prompt
+      $stdout.puts "Hit or Stand?(h/s):"
+      @input = $stdin.gets.chomp
       if hit
         play_the_player
       elsif stand
@@ -37,7 +37,7 @@ class Main
   end
 
   def play_the_player
-    player.cards << deck.deal
+    deck.deal_to(player)
     $stdout.puts player.last_dealt
     $stdout.puts "Player Score: #{player.score}\n"
     @input = nil
@@ -45,23 +45,18 @@ class Main
 
   def play_the_dealer
     while(dealer.score <= DEALER_THRESHOLD) do
-      dealer.cards << deck.deal
+      deck.deal_to(dealer)
       $stdout.puts dealer.last_dealt
       $stdout.puts "Dealer Score: #{dealer.score}\n"
     end
   end
 
-  def prompt
-    $stdout.puts "Hit or Stand?(h/s):"
-    $stdin.gets.chomp
-  end
-
   def deal_opening_hands
     deck.shuffle
-    player.cards << deck.deal
-    player.cards << deck.deal
-    dealer.cards << deck.deal
-    dealer.cards << deck.deal
+    deck.deal_to(player)
+    deck.deal_to(player)
+    deck.deal_to(dealer)
+    deck.deal_to(dealer)
   end
 
   def show_opening_hands
