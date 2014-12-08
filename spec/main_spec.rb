@@ -16,18 +16,14 @@ describe Main do
       allow(deck).to receive(:shuffle)
     end
 
-    it 'runs' do
-      expect(Main.new.run).to include 'Welcome to Blackjack!'
-    end
-
     it 'deals to the player' do
-      allow(hand).to receive(:current).and_return("Player was dealt 5♥")
-      expect(Main.new.run).to include 'Player was dealt 5♥'
+      expect(hand).to receive(:current).and_return("Player was dealt 5♥")
+      output = FakeIO.each_input(["hit"]) { Main.new.run }
     end
 
     it 'deals to the dealer' do
-      allow(hand).to receive(:current).and_return("Dealer was dealt 5♥")
-      expect(Main.new.run).to include 'Dealer was dealt 5♥'
+      expect(hand).to receive(:current).and_return("Dealer was dealt 5♥")
+      output = FakeIO.each_input(["hit"]) { Main.new.run }
     end
   end
 end
