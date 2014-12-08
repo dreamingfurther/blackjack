@@ -4,4 +4,8 @@ class Dealer < Hand
       "#{index+1}. Dealer was dealt #{card.value}"
     end.join("\n")
   end
+
+  def last_dealt
+    "#{cards.count}. Dealer was dealt #{cards.last.value}"
+  end
 end
