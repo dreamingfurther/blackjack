@@ -11,7 +11,7 @@ class Card
     face_card ? 10 : value.chop.to_i
   end
 
-  def self.adjust_aces(score, cards)
+  def self.adjust_for_aces(score, cards)
     cards.each do |card|
       if card.value.chop == 'Ace'
         if score >= Main::BUST_SCORE

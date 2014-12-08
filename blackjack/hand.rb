@@ -4,7 +4,7 @@ class Hand
   end
 
   def score
-    Card.adjust_aces(raw_score, cards)
+    Card.adjust_for_aces(raw_score, cards)
   end
 
   attr_accessor :cards

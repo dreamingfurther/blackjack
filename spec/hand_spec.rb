@@ -8,7 +8,7 @@ describe Hand do
       card2 = Card.new('9♥')
       hand.cards << card1
       hand.cards << card2
-      expect(Card).to receive(:adjust_aces).with(14, [card1, card2])
+      expect(Card).to receive(:adjust_for_aces).with(14, [card1, card2])
       hand.score
     end
   end

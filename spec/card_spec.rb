@@ -25,17 +25,17 @@ describe Card do
     end
   end
 
-  describe '.adjust_aces' do
+  describe '.adjust_for_aces' do
     it 'returns the score of the number cards' do
       card1 = Card.new('5♥')
       card2 = Card.new('9♥')
-      expect(Card.adjust_aces(14,[card1,card2])).to eq 14
+      expect(Card.adjust_for_aces(14,[card1,card2])).to eq 14
     end
 
     it 'returns the score of the face (non ace) cards' do
       card1 = Card.new('5♥')
       card2 = Card.new('Queen♥')
-      expect(Card.adjust_aces(15,[card1,card2])).to eq 15
+      expect(Card.adjust_for_aces(15,[card1,card2])).to eq 15
     end
 
     context 'when ace low is better' do
@@ -43,30 +43,30 @@ describe Card do
         card1 = Card.new('Queen♥')
         card2 = Card.new('King♥')
         card3 = Card.new('Ace♥')
-        expect(Card.adjust_aces(30,[card1,card2,card3])).to eq 21
+        expect(Card.adjust_for_aces(30,[card1,card2,card3])).to eq 21
       end
     end
 
     context 'when ace high is better' do
-      it 'returns the score of the face ace cards' do
+      it 'returns a score below 21 but with an 11 value for Aces' do
         card1 = Card.new('5♥')
         card2 = Card.new('Ace♥')
-        expect(Card.adjust_aces(15,[card1,card2])).to eq 16
+        expect(Card.adjust_for_aces(15,[card1,card2])).to eq 16
       end
     end
 
     context 'multiple aces' do
-      it 'returns the highest score lower than 21' do
+      it 'returns the highest score lower than 21 for 3 Aces' do
         card1 = Card.new('Ace♣')
         card2 = Card.new('Ace♦')
         card3 = Card.new('Ace♠')
-        expect(Card.adjust_aces(30,[card1,card2,card3])).to eq 13
+        expect(Card.adjust_for_aces(30,[card1,card2,card3])).to eq 13
       end
 
-      it 'returns the highest score lower than 21' do
+      it 'returns the highest score lower than 21 for 2 Aces' do
         card1 = Card.new('Ace♣')
         card2 = Card.new('Ace♦')
-        expect(Card.adjust_aces(20,[card1,card2])).to eq 12
+        expect(Card.adjust_for_aces(20,[card1,card2])).to eq 12
       end
     end
   end
