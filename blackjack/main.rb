@@ -44,7 +44,7 @@ class Main
   end
 
   def play_the_dealer
-    while(dealer.score <= DEALER_THRESHOLD) do
+    while(dealer.score < DEALER_THRESHOLD) do
       deck.deal_to(dealer)
       $stdout.puts dealer.last_dealt
       $stdout.puts "Dealer Score: #{dealer.score}\n"
