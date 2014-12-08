@@ -2,7 +2,8 @@ class Main
   def run
     deal_opening_hands
     show_opening_hands
-    prompt
+    take_player_input
+    show_game_status
   end
 
   private
@@ -23,10 +24,27 @@ class Main
       dealer.current + "\n"
   end
 
+  def take_player_input
+    input = prompt
+    while(player.score < 21) do
+      input ||= prompt
+      if input == 'h'
+        player.cards << deck.deal
+        $stdout.puts player.last_dealt
+        input = nil
+      elsif input == 's'
+        break
+      end
+    end
+  end
+
+  def show_game_status
+    $stdout.puts "Bust! You lose..." if player.score > 21
+  end
+
   def prompt
     puts "\nHit or Stand?(h/s):"
-    input = $stdin.gets
-    # $stdout.puts input
+    $stdin.gets.chomp
   end
 
   def deck

@@ -1,5 +1,7 @@
 class Dealer < Hand
   def current
-    cards.map { |card| "Dealer was dealt #{card.value}" }.join("\n")
+    cards.each_with_index.map do |card,index| 
+      "#{index+1}. Dealer was dealt #{card.value}"
+    end.join("\n")
   end
 end
