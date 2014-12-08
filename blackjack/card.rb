@@ -14,7 +14,7 @@ class Card
   def self.adjust_aces(score, cards)
     cards.each do |card|
       if card.value.chop == 'Ace'
-        if score >= 21
+        if score >= Main::BUST_SCORE
           score -= 9
         else
           score += 1

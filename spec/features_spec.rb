@@ -71,7 +71,7 @@ describe 'Features' do
 
     it 'reprompts for invalid input' do
       output = FakeIO.each_input(['invalid'] + hit) { Main.new.run }
-      expect(output).to include 'invalid input, please Hit or Stand?(h/s):'
+      expect(output).to include 'invalid input:'
     end
   end
 end
